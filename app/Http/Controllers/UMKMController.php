@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subsector;
 use App\Models\UMKM;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class UMKMController extends Controller
 {
@@ -15,7 +17,7 @@ class UMKMController extends Controller
     {
         $umkms = UMKM::with("subsector")->latest()->paginate(10);
 
-        return Inertia::render('Index', [
+        return Inertia::render('umkm/Index', [
             'umkms' => $umkms
         ]);
     }
@@ -25,7 +27,12 @@ class UMKMController extends Controller
      */
     public function create()
     {
-        //
+
+        $subsectors = Subsector::latest()->get();
+
+        return Inertia::render('umkm/Create', [
+            'subsectors' => $subsectors
+        ]);
     }
 
     /**
@@ -33,7 +40,24 @@ class UMKMController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        UMKM::create([
+            "name" => $request->name,
+            "slug" => Str::slug($request->name),
+            "description" => $request->description,
+            "owner" => $request->owner,
+            "image1" => "/",
+            "shopee_link" => $request->shopee_link,
+            "tokopedia_link" => $request->tokopedia_link,
+            "instagram_link" => $request->instagram_link,
+            "tiktok_link" => $request->tiktok_link,
+            "youtube_link" => $request->youtube_link,
+            "x_link" => $request->x_link,
+            "whatsapp_link" => $request->whatsapp_link,
+            "subsector_id" => $request->subsector_id,
+        ]);
+
+        return response()->json($request);
     }
 
     /**
