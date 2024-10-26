@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-import {
-    IconEye,
-    IconEyeFill,
-    IconPencilBox,
-    IconPlus,
-    IconTrash,
-} from "justd-icons";
+import { IconEye, IconPencilBox, IconPlus, IconTrash } from "justd-icons";
 import { responseUMKMAPI } from "../../Models/_apiResponse";
+import UMKM from "../../Models/UMKM";
+
+import { Inertia } from "@inertiajs/inertia";
 
 type PageProps = {
     umkms: responseUMKMAPI;
@@ -15,6 +12,12 @@ type PageProps = {
 
 const UMKMIndexPage = () => {
     const { umkms } = usePage<PageProps>().props;
+
+    const [selectedUMKM, setSelectedUMKM] = useState<UMKM>();
+
+    const handleDelete = () => {
+        Inertia.delete(`/umkms/${selectedUMKM.slug}`);
+    };
 
     return (
         <>
@@ -58,7 +61,18 @@ const UMKMIndexPage = () => {
                                             >
                                                 <IconPencilBox className="size-5" />
                                             </Link>
-                                            <button className="btn btn-xs btn-error">
+                                            <button
+                                                onClick={() => {
+                                                    (
+                                                        document.getElementById(
+                                                            "confirmationDelete"
+                                                        ) as HTMLFormElement
+                                                    ).showModal();
+
+                                                    setSelectedUMKM(umkm);
+                                                }}
+                                                className="btn btn-xs btn-error"
+                                            >
                                                 <IconTrash className="size-5" />
                                             </button>
                                         </div>
@@ -69,6 +83,29 @@ const UMKMIndexPage = () => {
                     </table>
                 </div>
             </section>
+
+            <dialog id="confirmationDelete" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Konfirmasi Hapus</h3>
+                    <p className="py-4">Yakin ingin menghapus data ini?</p>
+                    <div className="modal-action">
+                        <form method="dialog" className="flex gap-3">
+                            <button
+                                className="btn"
+                                onClick={() => setSelectedUMKM()}
+                            >
+                                Batal
+                            </button>
+                            <button
+                                className="btn btn-error"
+                                onClick={() => handleDelete()}
+                            >
+                                Yakin Hapus
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </>
     );
 };

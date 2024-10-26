@@ -3,7 +3,6 @@ import { IconChevronLeft } from "justd-icons";
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import UMKM from "../../Models/UMKM";
-import { responseSubsectorAPI } from "../../Models/_apiResponse";
 import Subsector from "../../Models/Subsector";
 
 type PageProps = {
