@@ -71,17 +71,39 @@ class UMKMController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $umkm = UMKM::with("subsector")->whereSlug($slug)->first();
+        $subsectors = Subsector::latest()->get();
+
+        return Inertia::render('umkm/Edit', [
+            'umkm' => $umkm,
+            'subsectors' => $subsectors
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+        UMKM::whereSlug($slug)->first()->update([
+            "name" => $request->name,
+            "slug" => Str::slug($request->name),
+            "description" => $request->description,
+            "owner" => $request->owner,
+            "image1" => "/",
+            "shopee_link" => $request->shopee_link,
+            "tokopedia_link" => $request->tokopedia_link,
+            "instagram_link" => $request->instagram_link,
+            "tiktok_link" => $request->tiktok_link,
+            "youtube_link" => $request->youtube_link,
+            "x_link" => $request->x_link,
+            "whatsapp_link" => $request->whatsapp_link,
+            "subsector_id" => $request->subsector_id,
+        ]);
+
+        return response()->json($request);
     }
 
     /**

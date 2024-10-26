@@ -1,6 +1,6 @@
 import { Link, usePage } from "@inertiajs/react";
 import { IconChevronLeft } from "justd-icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import UMKM from "../../Models/UMKM";
 import { responseSubsectorAPI } from "../../Models/_apiResponse";
@@ -8,34 +8,33 @@ import Subsector from "../../Models/Subsector";
 
 type PageProps = {
     subsectors: Subsector[];
+    umkm: UMKM;
 };
 
 export default function UMKMCreatePage() {
-    const { subsectors } = usePage<PageProps>().props;
+    const { subsectors, umkm } = usePage<PageProps>().props;
 
     const [formData, setFormData] = useState<UMKM>({
-        name: "",
-        slug: "",
-        description: "",
-        owner: "",
+        name: umkm.name,
+        slug: umkm.slug,
+        description: umkm.description,
+        owner: umkm.owner,
         image1: "",
         image2: "",
         image3: "",
-        shopee_link: "",
-        tokopedia_link: "",
-        instagram_link: "",
-        tiktok_link: "",
-        youtube_link: "",
-        x_link: "",
-        whatsapp_link: "",
-        subsector_id: 0,
-        created_at: "",
-        updated_at: "",
+        shopee_link: umkm.shopee_link,
+        tokopedia_link: umkm.tokopedia_link,
+        instagram_link: umkm.instagram_link,
+        tiktok_link: umkm.tiktok_link,
+        youtube_link: umkm.youtube_link,
+        x_link: umkm.x_link,
+        whatsapp_link: umkm.whatsapp_link,
+        subsector_id: umkm.subsector_id,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Inertia.post("/umkms", formData);
+        Inertia.patch(`/umkms/${formData.slug}`, formData);
     };
 
     return (
@@ -43,9 +42,7 @@ export default function UMKMCreatePage() {
             <main className="container mx-auto">
                 <div className="flex items-center mb-5 mt-10 justify-between">
                     <div>
-                        <h1 className="text-xl font-medium ">
-                            Tambah Data UMKM
-                        </h1>
+                        <h1 className="text-xl font-medium ">Edit Data UMKM</h1>
                     </div>
                     <div>
                         <Link href="/umkms" className="btn btn-ghost">
@@ -66,6 +63,7 @@ export default function UMKMCreatePage() {
                             <input
                                 type="text"
                                 placeholder="Input disini..."
+                                value={formData.name}
                                 className="input input-bordered w-full"
                                 onChange={(e) => {
                                     setFormData({
@@ -86,6 +84,7 @@ export default function UMKMCreatePage() {
                                 type="text"
                                 placeholder="Input disini..."
                                 className="input input-bordered w-full"
+                                value={formData.owner}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,
@@ -113,7 +112,13 @@ export default function UMKMCreatePage() {
                                     Pilih Subsektor
                                 </option>
                                 {subsectors.map((subsector) => (
-                                    <option value={subsector.id}>
+                                    <option
+                                        selected={
+                                            subsector.id ==
+                                            formData.subsector_id
+                                        }
+                                        value={subsector.id}
+                                    >
                                         {subsector.name}
                                     </option>
                                 ))}
@@ -133,7 +138,9 @@ export default function UMKMCreatePage() {
                                         description: e.target.value,
                                     });
                                 }}
-                            ></textarea>
+                            >
+                                {formData.description}
+                            </textarea>
                         </label>
 
                         <label className="form-control w-full">
@@ -176,6 +183,7 @@ export default function UMKMCreatePage() {
                             <input
                                 type="text"
                                 placeholder="Input disini..."
+                                value={formData.shopee_link}
                                 className="input input-bordered w-full"
                                 onChange={(e) => {
                                     setFormData({
@@ -195,6 +203,7 @@ export default function UMKMCreatePage() {
                                 type="text"
                                 placeholder="Input disini..."
                                 className="input input-bordered w-full"
+                                value={formData.tokopedia_link}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,
@@ -213,6 +222,7 @@ export default function UMKMCreatePage() {
                                 type="text"
                                 placeholder="Input disini..."
                                 className="input input-bordered w-full"
+                                value={formData.instagram_link}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,
@@ -228,6 +238,7 @@ export default function UMKMCreatePage() {
                             <input
                                 type="text"
                                 placeholder="Input disini..."
+                                value={formData.tiktok_link}
                                 className="input input-bordered w-full"
                                 onChange={(e) => {
                                     setFormData({
@@ -245,6 +256,7 @@ export default function UMKMCreatePage() {
                                 type="text"
                                 placeholder="Input disini..."
                                 className="input input-bordered w-full"
+                                value={formData.youtube_link}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,
@@ -261,6 +273,7 @@ export default function UMKMCreatePage() {
                                 type="text"
                                 placeholder="Input disini..."
                                 className="input input-bordered w-full"
+                                value={formData.x_link}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,

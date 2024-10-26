@@ -52,9 +52,12 @@ const UMKMIndexPage = () => {
                                             <button className="btn btn-xs btn-info">
                                                 <IconEye className="size-5" />
                                             </button>
-                                            <button className="btn btn-xs btn-primary">
+                                            <Link
+                                                href={`/umkms/${umkm.slug}/edit`}
+                                                className="btn btn-xs btn-primary"
+                                            >
                                                 <IconPencilBox className="size-5" />
-                                            </button>
+                                            </Link>
                                             <button className="btn btn-xs btn-error">
                                                 <IconTrash className="size-5" />
                                             </button>
