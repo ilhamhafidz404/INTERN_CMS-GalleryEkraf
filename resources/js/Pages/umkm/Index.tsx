@@ -52,9 +52,12 @@ const UMKMIndexPage = () => {
                                     <td>{umkm.subsector.name}</td>
                                     <td>
                                         <div className="flex gap-2">
-                                            <button className="btn btn-xs btn-info">
+                                            <Link
+                                                href={`/umkms/${umkm.slug}`}
+                                                className="btn btn-xs btn-info"
+                                            >
                                                 <IconEye className="size-5" />
-                                            </button>
+                                            </Link>
                                             <Link
                                                 href={`/umkms/${umkm.slug}/edit`}
                                                 className="btn btn-xs btn-primary"
