@@ -12,4 +12,8 @@ class UMKM extends Model
     protected $table = "umkms";
 
     protected $guarded = ["id"];
+
+    public function subsector() {
+        return $this->belongsTo(Subsector::class);
+    }
 }

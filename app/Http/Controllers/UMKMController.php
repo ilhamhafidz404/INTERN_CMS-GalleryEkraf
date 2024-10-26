@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UMKM;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UMKMController extends Controller
 {
@@ -13,23 +13,19 @@ class UMKMController extends Controller
      */
     public function index()
     {
-        try {
-            $umkms = UMKM::latest()->paginate(10);
+        $umkms = UMKM::with("subsector")->latest()->paginate(10);
 
-            return response()->json([
-                "code" => "EKRAF-001",
-                "success" => true,
-                "message" => "Get data UMKMs success",
-                "result" => $umkms,
-            ], 200);
-        } catch(\Exception $e){
-            return response()->json([
-                "code" => "EKRAF-003",
-                "success" => false,
-                "message" => "Get data UMKMs failed, " . $e->getMessage(),
-                "result" => [],
-            ], 500);
-        }
+        return Inertia::render('Index', [
+            'umkms' => $umkms
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -37,39 +33,7 @@ class UMKMController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $umkm = UMKM::create([
-                "name" => $request->name,
-                "slug" => Str::slug($request->title),
-                "description" => $request->description,
-                "owner" => $request->owner,
-                "image1" => $request->image1,
-                "image2" => $request->image2,
-                "image3" => $request->image3,
-                "shopee_link" => $request->shopee_link,
-                "tokopedia_link" => $request->tokopedia_link,
-                "instagram_link" => $request->instagram_link,
-                "tiktok_link" => $request->tiktok_link,
-                "youtube_link" => $request->youtube_link,
-                "x_link" => $request->x_link,
-                "whatsapp_link" => $request->whatsapp_link,
-                "subsector_id" => $request->subsector_id,
-            ]);
-
-            return response()->json([
-                "code" => "EKRAF-001",
-                "success" => true,
-                "message" => "Create data UMKMs success",
-                "result" => $umkm,
-            ], 200);
-        } catch(\Exception $e){
-            return response()->json([
-                "code" => "EKRAF-003",
-                "success" => false,
-                "message" => "Create data UMKMs failed, " . $e->getMessage(),
-                "result" => [],
-            ], 500);
-        }
+        //
     }
 
     /**
@@ -77,23 +41,15 @@ class UMKMController extends Controller
      */
     public function show(string $id)
     {
-        try {
-            $umkm = UMKM::find($id);
+        //
+    }
 
-            return response()->json([
-                "code" => "EKRAF-001",
-                "success" => true,
-                "message" => "Get data UMKM success",
-                "result" => $umkm,
-            ], 200);
-        } catch(\Exception $e){
-            return response()->json([
-                "code" => "EKRAF-003",
-                "success" => false,
-                "message" => "Get data UMKM failed, " . $e->getMessage(),
-                "result" => [],
-            ], 500);
-        }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
     }
 
     /**
@@ -101,42 +57,7 @@ class UMKMController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        try {
-
-            $umkm = UMKM::find($id);
-
-            $umkm->update([
-                "name" => $request->name,
-                "slug" => Str::slug($request->title),
-                "description" => $request->description,
-                "owner" => $request->owner,
-                "image1" => $request->image1,
-                "image2" => $request->image2,
-                "image3" => $request->image3,
-                "shopee_link" => $request->shopee_link,
-                "tokopedia_link" => $request->tokopedia_link,
-                "instagram_link" => $request->instagram_link,
-                "tiktok_link" => $request->tiktok_link,
-                "youtube_link" => $request->youtube_link,
-                "x_link" => $request->x_link,
-                "whatsapp_link" => $request->whatsapp_link,
-                "subsector_id" => $request->subsector_id,
-            ]);
-
-            return response()->json([
-                "code" => "EKRAF-001",
-                "success" => true,
-                "message" => "Update data UMKM success",
-                "result" => $umkm,
-            ], 200);
-        } catch(\Exception $e){
-            return response()->json([
-                "code" => "EKRAF-003",
-                "success" => false,
-                "message" => "Update data UMKM failed, " . $e->getMessage(),
-                "result" => [],
-            ], 500);
-        }
+        //
     }
 
     /**
@@ -144,25 +65,6 @@ class UMKMController extends Controller
      */
     public function destroy(string $id)
     {
-        try {
-
-            $umkm = UMKM::find($id);
-
-            $umkm->delete();
-
-            return response()->json([
-                "code" => "EKRAF-001",
-                "success" => true,
-                "message" => "Delete data UMKM success",
-                "result" => $umkm,
-            ], 200);
-        } catch(\Exception $e){
-            return response()->json([
-                "code" => "EKRAF-003",
-                "success" => false,
-                "message" => "Delete data UMKM failed, " . $e->getMessage(),
-                "result" => [],
-            ], 500);
-        }
+        //
     }
 }

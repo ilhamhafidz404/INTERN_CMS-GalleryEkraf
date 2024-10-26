@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UMKMController;
+use App\Http\Controllers\API\UMKMController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

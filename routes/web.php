@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UMKMController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,6 +15,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Index');
-});
+// Route::get('/', function () {
+//     return Inertia::render('Index');
+// });
+
+Route::resource('/umkms', UMKMController::class);
