@@ -18,6 +18,8 @@ class UMKMSeeder extends Seeder
                 "name" => "Ilham Store",
                 "slug" => "ilham-store",
                 "owner" => "Ilham Hafidz",
+                "location" => "Darma",
+                "agreement_id" => 1,
                 "description" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis alias labore nulla provident ut sunt, tenetur rem, cumque eos non ipsam ea nesciunt pariatur numquam modi sapiente veritatis. Optio, veniam.",
                 "image1" => "default.jpg",
                 "subsector_id" => 1,
