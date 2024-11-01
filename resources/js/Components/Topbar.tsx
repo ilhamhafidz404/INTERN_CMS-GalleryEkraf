@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Topbar() {
     return (
-        <div className="shadow py-3 px-20 flex items-center justify-between">
+        <div className="shadow py-3 px-20 flex items-center justify-between bg-white">
             <div>
                 <h1 className="text-2xl font-medium">UMKM</h1>
             </div>
