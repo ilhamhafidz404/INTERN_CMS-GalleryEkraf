@@ -1,18 +1,29 @@
+import { Link, usePage } from "@inertiajs/react";
 import { IconBag2Fill, IconStoreFill } from "justd-icons";
 import React from "react";
 
 export default function Sidebar() {
+    const { url } = usePage();
+
     return (
         <div className="bg-slate-800 min-h-screen text-white p-10">
             <h3 className="text-3xl font-semibold mb-14">Gallery Ekraf</h3>
             <ul>
-                <li className="flex gap-2 mb-7">
+                <li
+                    className={`flex gap-2 mb-7 ${
+                        url.startsWith("/umkms") ? "text-primary" : ""
+                    }`}
+                >
                     <IconStoreFill />
-                    <a href="">UMKM</a>
+                    <Link href="/umkms">UMKM</Link>
                 </li>
-                <li className="flex gap-2 mb-7">
+                <li
+                    className={`flex gap-2 mb-7 ${
+                        url.startsWith("/products") ? "text-primary" : ""
+                    }`}
+                >
                     <IconBag2Fill />
-                    <a href="">Produk</a>
+                    <Link href="/products">Produk</Link>
                 </li>
             </ul>
         </div>

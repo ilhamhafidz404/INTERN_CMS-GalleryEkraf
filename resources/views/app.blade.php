@@ -8,6 +8,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.jsx'])
         <!-- As you can see, we will use vite with jsx syntax for React-->
         @inertiaHead
+        @include('sweetalert::alert')
     </head>
     <body>
         @inertia

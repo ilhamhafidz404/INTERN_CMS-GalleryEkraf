@@ -59,7 +59,8 @@ class UMKMController extends Controller
             "agreement_id" => 1
         ]);
 
-        return response()->json($request);
+        // alert()->success('Title','Lorem Lorem Lorem');
+        return redirect("/umkms");
     }
 
     /**
@@ -111,7 +112,8 @@ class UMKMController extends Controller
             "agreement_id" => 1
         ]);
 
-        return response()->json($request);
+        return redirect("/umkms");
+        // return response()->json($request);
     }
 
     /**
@@ -122,6 +124,7 @@ class UMKMController extends Controller
         $umkm= UMKM::whereSlug($slug)->first();
         $umkm->delete();
 
-        return response()->json($umkm);
+        // return response()->json($umkm);
+        return redirect("/umkms");
     }
 }
