@@ -1,10 +1,14 @@
-import { Link, usePage } from "@inertiajs/react";
-import { IconChevronLeft } from "justd-icons";
 import React, { useState } from "react";
+import { Link, usePage } from "@inertiajs/react";
 import { Inertia } from "@inertiajs/inertia";
+
+//
+import { IconChevronLeft } from "justd-icons";
+import AdminPanel from "../../Layouts/AdminPanel";
+
+// models
 import { FormDataUMKM } from "../../Models/UMKM";
 import Subsector from "../../Models/Subsector";
-import AdminPanel from "../../Layouts/AdminPanel";
 
 type PageProps = {
     subsectors: Subsector[];
@@ -34,6 +38,28 @@ export default function UMKMCreatePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const data = new FormData();
+
+        data.append("name", formData.name || "");
+        data.append("slug", formData.slug || "");
+        data.append("description", formData.description || "");
+        data.append("location", formData.location || "");
+        data.append("owner", formData.owner || "");
+        if (formData.image1) data.append("image1", formData.image1);
+        if (formData.image2) data.append("image2", formData.image2);
+        if (formData.image3) data.append("image3", formData.image3);
+        data.append("shopee_link", formData.shopee_link || "");
+        data.append("tokopedia_link", formData.tokopedia_link || "");
+        data.append("instagram_link", formData.instagram_link || "");
+        data.append("tiktok_link", formData.tiktok_link || "");
+        data.append("youtube_link", formData.youtube_link || "");
+        data.append("x_link", formData.x_link || "");
+        data.append("whatsapp_link", formData.whatsapp_link || "");
+        data.append(
+            "subsector_id",
+            formData.subsector_id ? formData.subsector_id.toString() : ""
+        );
         Inertia.post("/umkms", formData);
     };
 
@@ -54,7 +80,11 @@ export default function UMKMCreatePage() {
                             </Link>
                         </div>
                     </div>
-                    <form onSubmit={(e) => handleSubmit(e)} method="post">
+                    <form
+                        onSubmit={(e) => handleSubmit(e)}
+                        method="post"
+                        encType="multipart/form-data"
+                    >
                         <section className="grid grid-cols-3 gap-4">
                             <label className="form-control w-full">
                                 <div className="label">
@@ -166,6 +196,14 @@ export default function UMKMCreatePage() {
                                 <input
                                     type="file"
                                     className="file-input input-bordered w-full"
+                                    onChange={(e) => {
+                                        const file =
+                                            e.target.files?.[0] || null;
+                                        setFormData({
+                                            ...formData,
+                                            image1: file, // Use null if no file is selected
+                                        });
+                                    }}
                                 />
                             </label>
                             <label className="form-control w-full">
@@ -178,6 +216,14 @@ export default function UMKMCreatePage() {
                                     type="file"
                                     placeholder="Input disini..."
                                     className="file-input input-bordered w-full"
+                                    onChange={(e) => {
+                                        const file =
+                                            e.target.files?.[0] || null;
+                                        setFormData({
+                                            ...formData,
+                                            image2: file, // Use null if no file is selected
+                                        });
+                                    }}
                                 />
                             </label>
                             <label className="form-control w-full">
@@ -190,6 +236,14 @@ export default function UMKMCreatePage() {
                                     type="file"
                                     placeholder="Input disini..."
                                     className="file-input input-bordered w-full"
+                                    onChange={(e) => {
+                                        const file =
+                                            e.target.files?.[0] || null;
+                                        setFormData({
+                                            ...formData,
+                                            image3: file, // Use null if no file is selected
+                                        });
+                                    }}
                                 />
                             </label>
 

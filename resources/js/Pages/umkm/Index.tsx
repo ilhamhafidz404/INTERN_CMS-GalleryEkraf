@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-import {
-    IconEye,
-    IconPencilBox,
-    IconPlus,
-    IconStore,
-    IconStoreFill,
-    IconTrash,
-} from "justd-icons";
+import { Inertia } from "@inertiajs/inertia";
+
+//
+import { IconEye, IconPencilBox, IconPlus, IconTrash } from "justd-icons";
+import AdminPanel from "../../Layouts/AdminPanel";
+
+// models
 import { responseUMKMAPI } from "../../Models/_apiResponse";
 import { UMKM } from "../../Models/UMKM";
-
-import { Inertia } from "@inertiajs/inertia";
-import AdminPanel from "../../Layouts/AdminPanel";
 
 type PageProps = {
     umkms: responseUMKMAPI;
@@ -60,7 +56,16 @@ const UMKMIndexPage = () => {
                                 {umkms?.data?.map((umkm, index) => (
                                     <tr className="hover">
                                         <th>{index + 1}</th>
-                                        <td>{umkm.name}</td>
+                                        <td>
+                                            <div className="flex gap-2 items-center">
+                                                <img
+                                                    src={`http://127.0.0.1:8080/storage/${umkm.image1}`}
+                                                    alt="logo"
+                                                    className="w-[50px]"
+                                                />
+                                                <p>{umkm.name}</p>
+                                            </div>
+                                        </td>
                                         <td>{umkm.subsector.name}</td>
                                         <td>
                                             <div className="flex gap-2">

@@ -40,13 +40,18 @@ class UMKMController extends Controller
      */
     public function store(Request $request)
     {
+        $pathImage1 = $request->file('image1') ? $request->file('image1')->store('umkm_images', 'public') : '/';
+        $pathImage2 = $request->file('image2') ? $request->file('image2')->store('umkm_images', 'public') : '/';
+        $pathImage3 = $request->file('image3') ? $request->file('image3')->store('umkm_images', 'public') : '/';
 
         UMKM::create([
             "name" => $request->name,
             "slug" => Str::slug($request->name),
             "description" => $request->description,
             "owner" => $request->owner,
-            "image1" => "/",
+            "image1" => $pathImage1,
+            "image2" => $pathImage2,
+            "image3" => $pathImage3,
             "shopee_link" => $request->shopee_link,
             "tokopedia_link" => $request->tokopedia_link,
             "instagram_link" => $request->instagram_link,

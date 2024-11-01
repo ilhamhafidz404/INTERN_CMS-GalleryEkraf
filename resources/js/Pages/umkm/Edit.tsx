@@ -1,10 +1,13 @@
 import { Link, usePage } from "@inertiajs/react";
-import { IconChevronLeft } from "justd-icons";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { responseSubsectorAPI } from "../../Models/_apiResponse";
-import Subsector from "../../Models/Subsector";
+
+//
+import { IconChevronLeft } from "justd-icons";
 import AdminPanel from "../../Layouts/AdminPanel";
+
+// models
+import Subsector from "../../Models/Subsector";
 import { FormDataUMKM, UMKM } from "../../Models/UMKM";
 
 type PageProps = {
