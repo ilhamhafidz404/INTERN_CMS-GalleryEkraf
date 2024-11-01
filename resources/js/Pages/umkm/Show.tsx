@@ -1,8 +1,8 @@
 import { Link, usePage } from "@inertiajs/react";
 import { IconChevronLeft } from "justd-icons";
 import React from "react";
-import UMKM from "../../Models/UMKM";
 import AdminPanel from "../../Layouts/AdminPanel";
+import { UMKM } from "../../Models/UMKM";
 
 type PageProps = {
     umkm: UMKM;

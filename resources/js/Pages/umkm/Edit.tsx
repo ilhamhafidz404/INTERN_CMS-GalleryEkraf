@@ -2,10 +2,10 @@ import { Link, usePage } from "@inertiajs/react";
 import { IconChevronLeft } from "justd-icons";
 import React, { useState, useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import UMKM from "../../Models/UMKM";
 import { responseSubsectorAPI } from "../../Models/_apiResponse";
 import Subsector from "../../Models/Subsector";
 import AdminPanel from "../../Layouts/AdminPanel";
+import { FormDataUMKM, UMKM } from "../../Models/UMKM";
 
 type PageProps = {
     subsectors: Subsector[];
@@ -15,7 +15,7 @@ type PageProps = {
 export default function UMKMCreatePage() {
     const { subsectors, umkm } = usePage<PageProps>().props;
 
-    const [formData, setFormData] = useState<UMKM>({
+    const [formData, setFormData] = useState<FormDataUMKM>({
         name: umkm.name,
         slug: umkm.slug,
         description: umkm.description,
@@ -31,6 +31,8 @@ export default function UMKMCreatePage() {
         x_link: umkm.x_link,
         whatsapp_link: umkm.whatsapp_link,
         subsector_id: umkm.subsector_id,
+        agreement_id: umkm.agreement_id,
+        location: umkm.location,
     });
 
     const handleSubmit = (e) => {
@@ -108,7 +110,9 @@ export default function UMKMCreatePage() {
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
-                                            subsector_id: e.target.value,
+                                            subsector_id: parseInt(
+                                                e.target.value
+                                            ),
                                         });
                                     }}
                                 >
@@ -146,6 +150,24 @@ export default function UMKMCreatePage() {
                                     }}
                                 >
                                     {formData.description}
+                                </textarea>
+                            </label>
+
+                            <label className="form-control col-span-3">
+                                <div className="label">
+                                    <span className="label-text">Location</span>
+                                </div>
+                                <textarea
+                                    className="textarea textarea-bordered h-24"
+                                    placeholder="Input disini..."
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            location: e.target.value,
+                                        });
+                                    }}
+                                >
+                                    {formData.location}
                                 </textarea>
                             </label>
 

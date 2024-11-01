@@ -55,6 +55,8 @@ class UMKMController extends Controller
             "x_link" => $request->x_link,
             "whatsapp_link" => $request->whatsapp_link,
             "subsector_id" => $request->subsector_id,
+            "location" => $request->location,
+            "agreement_id" => 1
         ]);
 
         return response()->json($request);
@@ -105,6 +107,8 @@ class UMKMController extends Controller
             "x_link" => $request->x_link,
             "whatsapp_link" => $request->whatsapp_link,
             "subsector_id" => $request->subsector_id,
+            "location" => $request->location,
+            "agreement_id" => 1
         ]);
 
         return response()->json($request);

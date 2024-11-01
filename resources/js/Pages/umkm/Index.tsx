@@ -9,7 +9,7 @@ import {
     IconTrash,
 } from "justd-icons";
 import { responseUMKMAPI } from "../../Models/_apiResponse";
-import UMKM from "../../Models/UMKM";
+import { UMKM } from "../../Models/UMKM";
 
 import { Inertia } from "@inertiajs/inertia";
 import AdminPanel from "../../Layouts/AdminPanel";
@@ -24,7 +24,7 @@ const UMKMIndexPage = () => {
     const [selectedUMKM, setSelectedUMKM] = useState<UMKM>();
 
     const handleDelete = () => {
-        Inertia.delete(`/umkms/${selectedUMKM.slug}`);
+        Inertia.delete(`/umkms/${selectedUMKM?.slug || ""}`);
     };
 
     return (
@@ -107,7 +107,7 @@ const UMKMIndexPage = () => {
                         <form method="dialog" className="flex gap-3">
                             <button
                                 className="btn"
-                                onClick={() => setSelectedUMKM()}
+                                onClick={() => setSelectedUMKM(undefined)}
                             >
                                 Batal
                             </button>
