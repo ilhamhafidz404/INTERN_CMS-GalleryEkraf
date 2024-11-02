@@ -104,7 +104,6 @@ class UMKMController extends Controller
             "slug" => Str::slug($request->name),
             "description" => $request->description,
             "owner" => $request->owner,
-            "image1" => "/",
             "shopee_link" => $request->shopee_link,
             "tokopedia_link" => $request->tokopedia_link,
             "instagram_link" => $request->instagram_link,

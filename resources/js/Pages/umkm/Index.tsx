@@ -50,60 +50,73 @@ const UMKMIndexPage = () => {
                                 <thead>
                                     <tr className="bg-gray-900 text-gray-100">
                                         <th>No</th>
-                                        <th>Name</th>
+                                        <th>Nama UMKM</th>
+                                        <th>Nama Pemilik</th>
                                         <th>Subsektor</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {umkms?.data?.map((umkm, index) => (
-                                        <tr className="hover">
-                                            <th>{index + 1}</th>
-                                            <td>
-                                                <div className="flex gap-2 items-center">
-                                                    <img
-                                                        src={`http://127.0.0.1:8000/storage/${umkm.image1}`}
-                                                        alt="logo"
-                                                        className="w-[50px]"
-                                                    />
-                                                    <p>{umkm.name}</p>
-                                                </div>
-                                            </td>
-                                            <td>{umkm.subsector.name}</td>
-                                            <td>
-                                                <div className="flex gap-2">
-                                                    <Link
-                                                        href={`/umkms/${umkm.slug}`}
-                                                        className="btn btn-xs btn-info"
-                                                    >
-                                                        <IconEye className="size-5" />
-                                                    </Link>
-                                                    <Link
-                                                        href={`/umkms/${umkm.slug}/edit`}
-                                                        className="btn btn-xs btn-primary"
-                                                    >
-                                                        <IconPencilBox className="size-5" />
-                                                    </Link>
-                                                    <button
-                                                        onClick={() => {
-                                                            (
-                                                                document.getElementById(
-                                                                    "confirmationDelete"
-                                                                ) as HTMLFormElement
-                                                            ).showModal();
+                                    {umkms.data.length ? (
+                                        umkms?.data?.map((umkm, index) => (
+                                            <tr className="hover">
+                                                <th>{index + 1}</th>
+                                                <td>
+                                                    <div className="flex gap-2 items-center">
+                                                        <img
+                                                            src={`http://127.0.0.1:8000/storage/${umkm.image1}`}
+                                                            alt="logo"
+                                                            className="w-[50px]"
+                                                        />
+                                                        <p>{umkm.name}</p>
+                                                    </div>
+                                                </td>
+                                                <td>{umkm.owner}</td>
+                                                <td>{umkm.subsector.name}</td>
+                                                <td>
+                                                    <div className="flex gap-2">
+                                                        <Link
+                                                            href={`/umkms/${umkm.slug}`}
+                                                            className="btn btn-xs btn-info"
+                                                        >
+                                                            <IconEye className="size-5" />
+                                                        </Link>
+                                                        <Link
+                                                            href={`/umkms/${umkm.slug}/edit`}
+                                                            className="btn btn-xs btn-primary"
+                                                        >
+                                                            <IconPencilBox className="size-5" />
+                                                        </Link>
+                                                        <button
+                                                            onClick={() => {
+                                                                (
+                                                                    document.getElementById(
+                                                                        "confirmationDelete"
+                                                                    ) as HTMLFormElement
+                                                                ).showModal();
 
-                                                            setSelectedUMKM(
-                                                                umkm
-                                                            );
-                                                        }}
-                                                        className="btn btn-xs btn-error"
-                                                    >
-                                                        <IconTrash className="size-5" />
-                                                    </button>
-                                                </div>
+                                                                setSelectedUMKM(
+                                                                    umkm
+                                                                );
+                                                            }}
+                                                            className="btn btn-xs btn-error"
+                                                        >
+                                                            <IconTrash className="size-5" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td
+                                                colSpan={4}
+                                                className="text-center"
+                                            >
+                                                Data UMKM Kosong
                                             </td>
                                         </tr>
-                                    ))}
+                                    )}
                                 </tbody>
                             </table>
                         </div>
