@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UMKMController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,3 +21,4 @@ use Inertia\Inertia;
 // });
 
 Route::resource('/umkms', UMKMController::class);
+Route::resource('/products', ProductController::class);

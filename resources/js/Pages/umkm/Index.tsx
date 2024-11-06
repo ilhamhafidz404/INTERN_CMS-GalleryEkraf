@@ -25,7 +25,7 @@ const UMKMIndexPage = () => {
 
     return (
         <>
-            <AdminPanel>
+            <AdminPanel titlePage="UMKM">
                 <main className="px-20">
                     <div className="bg-white px-10 py-5 rounded shadow mt-10">
                         <div className="flex items-center mb-5 justify-between">

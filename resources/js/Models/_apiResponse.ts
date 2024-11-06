@@ -1,5 +1,6 @@
+import Product from "./Product";
 import Subsector from "./Subsector";
-import UMKM from "./UMKM";
+import { UMKM } from "./UMKM";
 
 interface Pagination {
     current_page: number;
@@ -26,8 +27,17 @@ interface responseUMKMAPI extends Pagination {
     data: UMKM[];
 }
 
+interface responseProductAPI extends Pagination {
+    data: Product[];
+}
+
 interface responseSubsectorAPI extends Pagination {
     data: Subsector[];
 }
 
-export { Pagination, responseUMKMAPI, responseSubsectorAPI };
+export {
+    Pagination,
+    responseUMKMAPI,
+    responseProductAPI,
+    responseSubsectorAPI,
+};

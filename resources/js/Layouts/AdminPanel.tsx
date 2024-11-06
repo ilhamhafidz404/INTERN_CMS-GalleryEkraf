@@ -4,16 +4,17 @@ import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
 
 type AdminPanelProps = {
-    children?: ReactNode;
+    children: ReactNode;
+    titlePage: string;
 };
 
-export default function AdminPanel({ children }: AdminPanelProps) {
+export default function AdminPanel({ children, titlePage }: AdminPanelProps) {
     return (
         <>
             <div className="grid grid-cols-5">
                 <Sidebar />
                 <section className="col-span-4">
-                    <Topbar />
+                    <Topbar titlePage={titlePage} />
 
                     {children}
                 </section>

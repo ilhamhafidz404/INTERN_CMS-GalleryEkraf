@@ -65,7 +65,7 @@ export default function UMKMCreatePage() {
 
     return (
         <>
-            <AdminPanel>
+            <AdminPanel titlePage="UMKM">
                 <main className="px-20">
                     <div className="flex items-center justify-between bg-white px-5 py-3 rounded-md shadow mt-10 mb-5">
                         <div>
