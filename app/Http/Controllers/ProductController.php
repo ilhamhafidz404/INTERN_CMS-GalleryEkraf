@@ -75,24 +75,44 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $product = Product::whereSlug($slug)->first();
+        $umkms = UMKM::latest()->get();
+
+        return Inertia::render('product/Edit', [
+            'product' => $product,
+            'umkms' => $umkms
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+        Product::whereSlug($slug)->first()->update([
+            "name" => $request->name,
+            "slug" => Str::slug($request->name),
+            "description" => $request->description,
+            "price" => $request->price,
+            "shopee_link" => $request->shopee_link,
+            "tokopedia_link" => $request->tokopedia_link,
+            "umkm_id" => $request->umkm_id,
+        ]);
+
+        return redirect("/products");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $product= Product::whereSlug($slug)->first();
+        $product->delete();
+
+        // return response()->json($product);
+        return redirect("/products");
     }
 }

@@ -17,10 +17,10 @@ type PageProps = {
 const UMKMIndexPage = () => {
     const { products } = usePage<PageProps>().props;
 
-    const [selectedUMKM, setSelectedUMKM] = useState<Product>();
+    const [selectedUMKM, setSelectedProduct] = useState<Product>();
 
     const handleDelete = () => {
-        Inertia.delete(`/umkms/${selectedUMKM?.slug || ""}`);
+        Inertia.delete(`/products/${selectedUMKM?.slug || ""}`);
     };
 
     return (
@@ -79,13 +79,13 @@ const UMKMIndexPage = () => {
                                                     <td>
                                                         <div className="flex gap-2">
                                                             <Link
-                                                                href={`/umkms/${product.slug}`}
+                                                                href={`/products/${product.slug}`}
                                                                 className="btn btn-xs btn-info"
                                                             >
                                                                 <IconEye className="size-5" />
                                                             </Link>
                                                             <Link
-                                                                href={`/umkms/${product.slug}/edit`}
+                                                                href={`/products/${product.slug}/edit`}
                                                                 className="btn btn-xs btn-primary"
                                                             >
                                                                 <IconPencilBox className="size-5" />
@@ -98,7 +98,7 @@ const UMKMIndexPage = () => {
                                                                         ) as HTMLFormElement
                                                                     ).showModal();
 
-                                                                    setSelectedUMKM(
+                                                                    setSelectedProduct(
                                                                         product
                                                                     );
                                                                 }}
@@ -135,7 +135,7 @@ const UMKMIndexPage = () => {
                         <form method="dialog" className="flex gap-3">
                             <button
                                 className="btn"
-                                onClick={() => setSelectedUMKM(undefined)}
+                                onClick={() => setSelectedProduct(undefined)}
                             >
                                 Batal
                             </button>
