@@ -55,7 +55,11 @@ export default function UMKMShowPage() {
                             <p className="text-primary font-medium">
                                 Tentang UMKM
                             </p>
-                            <p>{umkm.description}</p>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: umkm.description || "",
+                                }}
+                            ></div>
                         </div>
                         <div className="grid grid-cols-2 gap-5 mb-10">
                             <div>

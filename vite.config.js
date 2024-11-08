@@ -11,4 +11,7 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    optimizeDeps: {
+        include: ["@ckeditor/ckeditor5-react"],
+    },
 });

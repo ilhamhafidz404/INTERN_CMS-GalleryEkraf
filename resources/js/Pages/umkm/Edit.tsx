@@ -3,6 +3,21 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 
 //
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import {
+    ClassicEditor,
+    Bold,
+    Essentials,
+    Italic,
+    Mention,
+    Paragraph,
+    Undo,
+} from "ckeditor5";
+
+import "ckeditor5/ckeditor5.css";
+import "ckeditor5-premium-features/ckeditor5-premium-features.css";
+
+//
 import { IconChevronLeft } from "justd-icons";
 import AdminPanel from "../../Layouts/AdminPanel";
 
@@ -162,7 +177,7 @@ export default function UMKMCreatePage() {
                                                 Deskripsi
                                             </span>
                                         </div>
-                                        <textarea
+                                        {/* <textarea
                                             className="textarea textarea-bordered h-24"
                                             onChange={(e) => {
                                                 setFormData({
@@ -172,7 +187,38 @@ export default function UMKMCreatePage() {
                                             }}
                                         >
                                             {formData.description}
-                                        </textarea>
+                                        </textarea> */}
+                                        <CKEditor
+                                            editor={ClassicEditor}
+                                            config={{
+                                                // toolbar: {
+                                                //     items: [
+                                                //         "|",
+                                                //         "undo",
+                                                //         "redo",
+                                                //         "|",
+                                                //         "bold",
+                                                //         "italic",
+                                                //     ],
+                                                // },
+                                                plugins: [
+                                                    Bold,
+                                                    Essentials,
+                                                    Italic,
+                                                    Mention,
+                                                    Paragraph,
+                                                    Undo,
+                                                ],
+                                                initialData: `${formData.description}`,
+                                            }}
+                                            onChange={(event, editor) => {
+                                                const data = editor.getData();
+                                                setFormData({
+                                                    ...formData,
+                                                    description: data,
+                                                });
+                                            }}
+                                        />
                                     </label>
 
                                     <label className="form-control mb-3">

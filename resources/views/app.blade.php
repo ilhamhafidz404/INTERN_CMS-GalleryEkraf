@@ -12,5 +12,6 @@
     </head>
     <body class="bg-gray-100">
         @inertia
+        <script src="https://rawgit.com/basecamp/trix/master/dist/trix.js"></script>
     </body>
 </html>
