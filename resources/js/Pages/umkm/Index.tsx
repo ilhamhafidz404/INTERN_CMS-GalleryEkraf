@@ -3,7 +3,13 @@ import { Link, usePage } from "@inertiajs/react";
 import { Inertia } from "@inertiajs/inertia";
 
 //
-import { IconEye, IconPencilBox, IconPlus, IconTrash } from "justd-icons";
+import {
+    IconDownload,
+    IconEye,
+    IconPencilBox,
+    IconPlus,
+    IconTrash,
+} from "justd-icons";
 import AdminPanel from "../../Layouts/AdminPanel";
 
 // models
@@ -34,7 +40,16 @@ const UMKMIndexPage = () => {
                                     LIST UMKM
                                 </h1>
                             </div>
-                            <div>
+                            <div className="flex gap-1">
+                                <button
+                                    onClick={() => {
+                                        window.location.href = "/umkms/export";
+                                    }}
+                                    className="btn btn-success"
+                                >
+                                    <IconDownload className="size-5" />
+                                    Export
+                                </button>
                                 <Link
                                     href="/umkms/create"
                                     className="btn btn-primary"

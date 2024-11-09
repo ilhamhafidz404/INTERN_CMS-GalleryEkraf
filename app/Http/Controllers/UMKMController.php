@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UMKMExport;
 use App\Models\Subsector;
 use App\Models\UMKM;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UMKMController extends Controller
 {
@@ -130,5 +132,15 @@ class UMKMController extends Controller
 
         // return response()->json($umkm);
         return redirect("/umkms");
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function export()
+    {
+        Excel::store(new UMKMExport, 'umkms.xlsx', 'local');
+        // dd($export);
+        return Excel::download(new UMKMExport, 'umkms.xlsx');
     }
 }
