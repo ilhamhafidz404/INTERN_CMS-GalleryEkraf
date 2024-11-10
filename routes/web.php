@@ -23,6 +23,7 @@ use Inertia\Inertia;
 // });
 
 Route::resource('/', LoginController::class);
+
 Route::get('/umkms/export', [UMKMController::class, "export"]);
 Route::resource('/umkms', UMKMController::class);
 
