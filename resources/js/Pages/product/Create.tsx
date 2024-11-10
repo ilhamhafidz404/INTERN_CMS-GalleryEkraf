@@ -17,8 +17,6 @@ type PageProps = {
 export default function UMKMCreatePage() {
     const { umkms } = usePage<PageProps>().props;
 
-    console.log(umkms);
-
     const [formData, setFormData] = useState<FormDataProduct>({
         name: "",
         slug: "",

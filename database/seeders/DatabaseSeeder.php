@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AgreementSeeder::class,
             SubsectorSeeder::class,
-            UMKMSeeder::class
+            UMKMSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

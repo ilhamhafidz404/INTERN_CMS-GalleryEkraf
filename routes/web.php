@@ -22,13 +22,17 @@ use Inertia\Inertia;
 //     return Inertia::render('Index');
 // });
 
-Route::resource('/', LoginController::class);
+Route::get('/', [LoginController::class, 'index'])->name("login");
 
-Route::get('/umkms/export', [UMKMController::class, "export"]);
-Route::resource('/umkms', UMKMController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/umkms/export', [UMKMController::class, "export"]);
+    Route::resource('/umkms', UMKMController::class);
+    
+    Route::get('/products/export', [ProductController::class, "export"]);
+    Route::resource('/products', ProductController::class);
+});
 
-Route::get('/products/export', [ProductController::class, "export"]);
-Route::resource('/products', ProductController::class);
 
 
-Route::post('/login', [LoginController::class, 'Login']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
