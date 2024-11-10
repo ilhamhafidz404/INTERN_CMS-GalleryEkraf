@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductExport;
 use App\Models\Product;
 use App\Models\UMKM;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -114,5 +116,13 @@ class ProductController extends Controller
 
         // return response()->json($product);
         return redirect("/products");
+    }
+
+        /**
+     * Export
+     */
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 }

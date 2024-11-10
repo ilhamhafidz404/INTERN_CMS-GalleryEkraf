@@ -135,12 +135,10 @@ class UMKMController extends Controller
     }
     
     /**
-     * Remove the specified resource from storage.
+     * Export
      */
     public function export()
     {
-        Excel::store(new UMKMExport, 'umkms.xlsx', 'local');
-        // dd($export);
         return Excel::download(new UMKMExport, 'umkms.xlsx');
     }
 }
