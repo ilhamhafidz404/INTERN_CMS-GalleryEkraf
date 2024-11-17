@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UMKMController;
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/products/export', [ProductController::class, "export"]);
     Route::resource('/products', ProductController::class);
+
+    Route::resource('/agreements', AgreementController::class);
 });
 
 

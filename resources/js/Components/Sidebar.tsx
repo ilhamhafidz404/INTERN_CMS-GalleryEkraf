@@ -1,5 +1,9 @@
 import { Link, usePage } from "@inertiajs/react";
-import { IconBag2Fill, IconStoreFill } from "justd-icons";
+import {
+    IconBag2Fill,
+    IconDocumentChartFill,
+    IconStoreFill,
+} from "justd-icons";
 import React from "react";
 
 export default function Sidebar() {
@@ -24,6 +28,14 @@ export default function Sidebar() {
                 >
                     <IconBag2Fill />
                     <Link href="/products">Produk</Link>
+                </li>
+                <li
+                    className={`flex gap-2 mb-7 ${
+                        url.startsWith("/agreements") ? "text-primary" : ""
+                    }`}
+                >
+                    <IconDocumentChartFill />
+                    <Link href="/agreements">Persetujuan</Link>
                 </li>
             </ul>
         </div>

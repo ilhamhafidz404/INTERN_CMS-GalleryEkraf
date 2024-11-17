@@ -1,4 +1,5 @@
-import Product from "./Product";
+import { Agreement } from "./Agreement";
+import { Product } from "./Product";
 import Subsector from "./Subsector";
 import { UMKM } from "./UMKM";
 
@@ -31,6 +32,10 @@ interface responseProductAPI extends Pagination {
     data: Product[];
 }
 
+interface responseAgreementAPI extends Pagination {
+    data: Agreement[];
+}
+
 interface responseSubsectorAPI extends Pagination {
     data: Subsector[];
 }
@@ -40,4 +45,5 @@ export {
     responseUMKMAPI,
     responseProductAPI,
     responseSubsectorAPI,
+    responseAgreementAPI,
 };

@@ -32,4 +32,4 @@ type FormDataProduct = {
     whatsapp_link?: string;
 };
 
-export { Product, FormDataProduct };
+export type { Product, FormDataProduct };
