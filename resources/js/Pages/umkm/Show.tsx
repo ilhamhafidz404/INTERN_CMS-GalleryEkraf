@@ -62,80 +62,135 @@ export default function UMKMShowPage() {
                             ></div>
                         </div>
                         <div className="grid grid-cols-2 gap-5 mb-10">
-                            <div>
-                                <img
-                                    src={`http://127.0.0.1:8000/storage/${umkm.image2}`}
-                                    alt="Foto1"
-                                    className="rounded h-full object-cover"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src={`http://127.0.0.1:8000/storage/${umkm.image3}`}
-                                    alt="Foto2"
-                                    className="rounded h-full object-cover"
-                                />
-                            </div>
+                            {umkm.image2 && umkm.image2 != "/" && (
+                                <div>
+                                    <img
+                                        src={`http://127.0.0.1:8000/storage/${umkm.image2}`}
+                                        alt="Foto1"
+                                        className="rounded h-full object-cover"
+                                    />
+                                </div>
+                            )}
+                            {umkm.image3 && umkm.image3 != "/" && (
+                                <div>
+                                    <img
+                                        src={`http://127.0.0.1:8000/storage/${umkm.image3}`}
+                                        alt="Foto2"
+                                        className="rounded h-full object-cover"
+                                    />
+                                </div>
+                            )}
                         </div>
-                        <div className="mt-10">
-                            <p className="text-primary font-medium">Sosmed</p>
-                            <ul className="flex gap-5">
-                                <li>
-                                    <a
-                                        href={umkm.shopee_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        Shopee
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href={umkm.tokopedia_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        Tokopedia{" "}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href={umkm.tiktok_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        Tiktok
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href={umkm.instagram_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        Intagram
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href={umkm.x_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        X
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href={umkm.youtube_link}
-                                        target="_blank"
-                                        className="underline"
-                                    >
-                                        Youtube
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        {(umkm.shopee_link ||
+                            umkm.tokopedia_link ||
+                            umkm.tiktok_link ||
+                            umkm.instagram_link ||
+                            umkm.x_link ||
+                            umkm.youtube_link) && (
+                            <div className="mt-10">
+                                <p className="text-primary font-medium mb-3">
+                                    Sosmed
+                                </p>
+                                <ul className="flex gap-8">
+                                    {umkm.shopee_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.shopee_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/shopee.svg"
+                                                    alt="shopee"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                Shopee
+                                            </a>
+                                        </li>
+                                    )}
+                                    {umkm.tokopedia_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.tokopedia_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/tokopedia.png"
+                                                    alt="tokopedia"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                Tokopedia{" "}
+                                            </a>
+                                        </li>
+                                    )}
+                                    {umkm.tiktok_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.tiktok_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/tiktok.svg"
+                                                    alt="tiktok"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                Tiktok
+                                            </a>
+                                        </li>
+                                    )}
+                                    {umkm.instagram_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.instagram_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/instagram.svg"
+                                                    alt="instagram"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                Intagram
+                                            </a>
+                                        </li>
+                                    )}
+                                    {umkm.x_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.x_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/x.svg"
+                                                    alt="x"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                X
+                                            </a>
+                                        </li>
+                                    )}
+                                    {umkm.youtube_link && (
+                                        <li>
+                                            <a
+                                                href={umkm.youtube_link}
+                                                target="_blank"
+                                                className="flex flex-col items-center"
+                                            >
+                                                <img
+                                                    src="/sosmedIcons/youtube.svg"
+                                                    alt="youtube"
+                                                    className="w-[40px] h-[40px]"
+                                                />
+                                                Youtube
+                                            </a>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        )}
                     </section>
                 </main>
             </AdminPanel>

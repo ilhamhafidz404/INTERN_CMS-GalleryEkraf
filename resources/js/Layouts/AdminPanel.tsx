@@ -12,7 +12,9 @@ export default function AdminPanel({ children, titlePage }: AdminPanelProps) {
     return (
         <>
             <div className="grid grid-cols-5">
-                <Sidebar />
+                <div className="relative">
+                    <Sidebar />
+                </div>
                 <section className="col-span-4">
                     <Topbar titlePage={titlePage} />
 

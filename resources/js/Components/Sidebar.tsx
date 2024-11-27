@@ -10,7 +10,7 @@ export default function Sidebar() {
     const { url } = usePage();
 
     return (
-        <div className="bg-slate-800 min-h-screen text-white p-10">
+        <div className="bg-slate-800 min-h-screen text-white p-10 sticky top-0">
             <h3 className="text-3xl font-semibold mb-14">Gallery Ekraf</h3>
             <ul>
                 <li
